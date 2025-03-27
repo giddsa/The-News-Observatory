@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الخبر - المرصد الإخباري</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>📰 المرصد الإخباري</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="#">سياسة</a></li>
+                <li><a href="#">اقتصاد</a></li>
+                <li><a href="#">رياضة</a></li>
+                <li><a href="#">تكنولوجيا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="news-detail">
+            <h2 id="detail-title">عنوان الخبر</h2>
+            <p id="detail-date">تاريخ الخبر: </p>
+            <img id="detail-image" src="" alt="صورة الخبر">
+            <p id="detail-content">محتوى الخبر...</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 جميع الحقوق محفوظة - المرصد الإخباري</p>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const newsId = urlParams.get('id');
+
+        if (!newsId) {
+            document.getElementById("news-detail").innerHTML = "<p>⚠️ لم يتم العثور على الخبر!</p>";
+        } else {
+            fetch("news.json")
+                .then(response => response.json())
+                .then(newsData => {
+                    const news = newsData.find(item => item.id == newsId);
+                    if (news) {
+                        document.getElementById("detail-title").textContent = news.title;
+                        document.getElementById("detail-date").textContent = `تاريخ الخبر: ${news.date}`;
+                        document.getElementById("detail-image").src = news.image;
+                        document.getElementById("detail-content").textContent = news.content;
+                    } else {
+                        document.getElementById("news-detail").innerHTML = "<p>⚠️ الخبر غير موجود!</p>";
+                    }
+                })
+                .catch(() => {
+                    document.getElementById("news-detail").innerHTML = "<p>⚠️ خطأ في تحميل الأخبار!</p>";
+                });
+        }
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
