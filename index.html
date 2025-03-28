@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- العناوين العاجلة -->
+    <!-- الأخبار العاجلة -->
     <div class="breaking-news">
-        <marquee direction="right" scrollamount="6">📢 عاجل: اكتشاف علمي جديد يهز الأوساط العلمية! | 📢 عاجل: ارتفاع أسعار النفط...</marquee>
+        <span class="breaking-label">عاجل</span>
+        <marquee direction="right" scrollamount="6">📢 اكتشاف علمي جديد يهز الأوساط العلمية! | 📢 ارتفاع أسعار النفط...</marquee>
     </div>
 
     <!-- الهيدر -->
     <header>
-        <h1>📰 المرصد الإخباري</h1>
+        <div class="logo">
+            <h1>📰 المرصد الإخباري</h1>
+        </div>
         <nav>
             <ul>
                 <li><a href="#">الرئيسية</a></li>
@@ -35,8 +37,13 @@
         </section>
     </main>
 
+    <!-- الفوتر -->
     <footer>
         <p>&copy; 2025 جميع الحقوق محفوظة - المرصد الإخباري</p>
+        <div class="social-media">
+            <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
+            <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
+        </div>
     </footer>
 
     <script src="script.js"></script>
