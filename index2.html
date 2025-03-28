@@ -33,7 +33,7 @@
     </header>
 
     <main>
-        <section id="news-detail">
+        <section id="index2">
             <h2 id="detail-title">عنوان الخبر</h2>
             <p id="detail-date">تاريخ الخبر: </p>
             <img id="detail-image" src="" alt="صورة الخبر">
@@ -50,7 +50,7 @@
         const newsId = urlParams.get('id');
 
         if (!newsId) {
-            document.getElementById("news-detail").innerHTML = "<p>⚠️ لم يتم العثور على الخبر!</p>";
+            document.getElementById("index2").innerHTML = "<p>⚠️ لم يتم العثور على الخبر!</p>";
         } else {
             fetch("news.json")
                 .then(response => response.json())
@@ -63,11 +63,11 @@
                         document.getElementById("detail-image").onerror = function() { this.src = 'default-news.jpg'; };
                         document.getElementById("detail-content").textContent = news.content;
                     } else {
-                        document.getElementById("news-detail").innerHTML = "<p>⚠️ الخبر غير موجود!</p>";
+                        document.getElementById("index2").innerHTML = "<p>⚠️ الخبر غير موجود!</p>";
                     }
                 })
                 .catch(() => {
-                    document.getElementById("news-detail").innerHTML = "<p>⚠️ خطأ في تحميل الأخبار!</p>";
+                    document.getElementById("index2").innerHTML = "<p>⚠️ خطأ في تحميل الأخبار!</p>";
                 });
         }
     </script>
