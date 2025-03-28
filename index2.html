@@ -17,9 +17,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <header>
-        <h1>📰 المرصد الإخباري</h1>
+        <div class="logo">
+            <h1>📰 المرصد الإخباري</h1>
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html">الرئيسية</a></li>
@@ -59,6 +60,7 @@
                         document.getElementById("detail-title").textContent = news.title;
                         document.getElementById("detail-date").textContent = `تاريخ الخبر: ${news.date}`;
                         document.getElementById("detail-image").src = news.image;
+                        document.getElementById("detail-image").onerror = function() { this.src = 'default-news.jpg'; };
                         document.getElementById("detail-content").textContent = news.content;
                     } else {
                         document.getElementById("news-detail").innerHTML = "<p>⚠️ الخبر غير موجود!</p>";
