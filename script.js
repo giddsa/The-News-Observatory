@@ -1,23 +1,46 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     fetch("news.json")
         .then(response => response.json())
         .then(newsData => {
-            let newsContainer = document.getElementById("news");
+            const newsSection = document.getElementById("news");
 
             newsData.forEach(news => {
-                let newsItem = document.createElement("div");
-                newsItem.className = "news-item";
-                newsItem.innerHTML = `
-                    <h3>${news.title}</h3>
-                    <p>${news.date}</p>
-                    <img src="${news.image}" alt="${news.title}">
-                    <p><a href="index2.html?id=${news.id}">اقرأ المزيد</a></p>
-                `;
-                newsContainer.appendChild(newsItem);
+                const newsCard = document.createElement("div");
+                newsCard.classList.add("news-card");
+
+                // رابط للخبر
+                const newsLink = document.createElement("a");
+                newsLink.href = `news-detail.html?id=${news.id}`; // رابط صفحة التفاصيل
+                newsLink.style.textDecoration = "none";
+                newsLink.style.color = "inherit";
+
+                // صورة الخبر
+                const newsImage = document.createElement("img");
+                newsImage.src = news.image;
+                newsLink.appendChild(newsImage);
+
+                // عنوان الخبر
+                const newsTitle = document.createElement("h3");
+                newsTitle.textContent = news.title;
+                newsLink.appendChild(newsTitle);
+
+                // تاريخ الخبر
+                const newsDate = document.createElement("p");
+                newsDate.textContent = `تاريخ الخبر: ${news.date}`;
+                newsDate.style.color = "#888";
+                newsLink.appendChild(newsDate);
+
+                // محتوى الخبر (مختصر)
+                const newsText = document.createElement("p");
+                newsText.textContent = news.content;
+                newsLink.appendChild(newsText);
+
+                // إضافة الرابط إلى الكارت
+                newsCard.appendChild(newsLink);
+
+                // إضافة الكارت إلى القسم
+                newsSection.appendChild(newsCard);
             });
         })
-        .catch(error => {
-            console.error("⚠️ خطأ في تحميل الأخبار:", error);
-            document.getElementById("news").innerHTML = "<p>⚠️ تعذر تحميل الأخبار!</p>";
-        });
+        .catch(error => console.error("خطأ في تحميل الأخبار:", error));
 });
